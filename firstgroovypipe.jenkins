@@ -1,0 +1,22 @@
+#!groovy
+// This is groovy
+
+properties([disableConcurrentBuilds()])
+
+pipeline {
+	agent {
+		label 'master'
+	 	}
+	options {
+		buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10')
+		timestamps()
+		}
+		stages {
+			stage("Step")
+				steps {
+					sh 'ssh root@monitoring \'hostname\''
+					sh 'ssh root@nginx \'hostname\''
+				}
+			}
+		}
+	}
