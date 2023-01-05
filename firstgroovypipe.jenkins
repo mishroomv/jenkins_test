@@ -12,10 +12,11 @@ pipeline {
 		timestamps()
 		}
 		stages {
-			stage("Step")
+			stage("Step") {
 				steps {
 					sh 'ssh root@monitoring \'hostname\''
 					sh 'ssh root@nginx \'hostname\''
 				}
 			}
 		}
+	}
